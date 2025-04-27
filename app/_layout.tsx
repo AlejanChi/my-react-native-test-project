@@ -1,8 +1,17 @@
 import { Stack } from "expo-router";
+import { StyleProp } from "react-native";
 
 export default function RootLayout() {
-  return <Stack
+  return (<>
+  <Stack
   screenOptions={{
-    headerShown: false
-  }} />;
+    headerShown: false,
+    headerTitleStyle: {
+      fontFamily: 'Jersey20',
+    },
+  }} 
+  />
+  </>
+
+);
 }

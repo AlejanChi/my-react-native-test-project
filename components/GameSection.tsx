@@ -10,22 +10,14 @@ const GameSection = () => {
       <Text style={styles.sectionTitle}>Last Game played:</Text>
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: "#" }}
+          source={{ uri: "https://i.pinimg.com/736x/e0/c5/c0/e0c5c0e95d4fd726c2915869dc5c2b77.jpg" }}
           style={styles.gameImage}
           resizeMode="cover"
         />
+        <Text style={styles.gameLabel}>Puzzle</Text>
       </View>
-
       {/* Botón flotante */}
-      <TouchableHighlight
-        underlayColor={"#0DEFE5"}
-        style={[styles.floatingButton]}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-          <Ionicons name="play" size={32} color="white" />
-          <Text style={styles.buttonText}>Let's play</Text>
-        </View>
-      </TouchableHighlight>
+      
     </View>
   );
 };

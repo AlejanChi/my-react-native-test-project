@@ -1,24 +1,60 @@
 import { styles } from "@/consts/styles";
-import { FlatList, View, Text } from "react-native";
+import { useState } from "react";
+import { FlatList, View, Text, ScrollView, TouchableOpacity } from "react-native";
 
-const Metrics = () => {
-  // Datos de ejemplo para las barras (valores entre 0 y 100)
-  const barData = [40, 65, 80, 30, 55, 90, 45, 70, 60, 35];
+type barData = {
+  data:number[]
+}
+const Metrics = (props:barData) => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [positions, setPositions] = useState<{ [key: number]: { x: number, y: number } }>({});
+
+  const handleBarPress = (index: number) => {
+    setSelectedIndex(selectedIndex === index ? null : index);
+  };
+
+  const handleLayout = (index: number, event: any) => {
+    const { x, y } = event.nativeEvent.layout;
+    setPositions(prev => ({ ...prev, [index]: { x, y } }));
+  };
 
   return (
     <View style={styles.metricsContainer}>
+       <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContainer}
+      >
       <View style={[styles.barsContainer]}>
-        {barData.map((value, index) => (
-            <View style={{flexDirection:"column",alignItems:"center",gap:10}}>
-          <View key={index} style={styles.barWrapper}>
-            <View style={[styles.bar, { height: `${value}%` }]} />
-          </View>
-          <Text key={index + 1} style={styles.gridNumber}>
-          {index + 1}
-        </Text>
-            </View>
+        {props.data.map((value, index) => (
+           <TouchableOpacity
+           key={index}
+           onPress={() => handleBarPress(index)}
+           onLayout={(e) => handleLayout(index, e)}
+           activeOpacity={0.7}
+         >
+           <View style={styles.barColumn}>
+             <View style={styles.barWrapper}>
+               <View style={[styles.bar, { height: `${value}%` }]} />
+             </View>
+             <Text style={styles.gridNumber}>{index + 1}</Text>
+             
+             {selectedIndex === index && (
+               <View style={[
+                 styles.tooltip,
+                 { 
+                   bottom: (positions[index]?.y || 0) + 100 
+                 }
+               ]}>
+                 <Text style={styles.tooltipText}>{value}%</Text>
+                 <View style={styles.tooltipPointer} />
+               </View>
+             )}
+           </View>
+         </TouchableOpacity>
         ))}
       </View>
+      </ScrollView>
       
       <Text style={styles.scoreTitle}>
         cognitive score{" "}

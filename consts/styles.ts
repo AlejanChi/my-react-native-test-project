@@ -8,16 +8,14 @@ const fontSizes = {
 
 export const styles = StyleSheet.create({
   container: {
-    flex:1,
     backgroundColor: "#fff",
-    // borderRadius: 12,
     padding: 30,
-    // margin: 16,
-    shadowColor: "#000",
+    shadowColor: "transparent",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 3,
+    height: "100%",
   },
   headerBlock: {
     flexDirection: "row",
@@ -27,6 +25,7 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     borderBottomColor: "#CCC",
     borderBottomWidth: 1,
+    marginTop: -20,
   },
   header: {
     fontSize: fontSizes.size_3,
@@ -62,18 +61,16 @@ export const styles = StyleSheet.create({
     height: 15,
     backgroundColor: "#fff",
     borderRadius: 16,
+    padding: 3
   },
   progressBarFill: {
     // width:'100%',
-    height: 15,
-    backgroundColor: "#1D4ABD",
+    height: 10,
     borderRadius: 16,
-    padding: 3,
+    padding: 2,
   },
- 
 
-
-  //ESTILOS DE LA GRAFICA
+  //ESTILOS DE LA GRAFICA ==================================================================================
   daysRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -84,6 +81,17 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#2d3436",
   },
+  dayButton: {
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    borderRadius: 8,
+  },
+  selectedDayButton: {
+    backgroundColor: "#00C7BE",
+  },
+  selectedDayText: {
+    color: "#ffffff",
+  },
   numbersGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -92,140 +100,191 @@ export const styles = StyleSheet.create({
     marginVertical: 16,
     // marginHorizontal:"auto"
   },
-  gridNumber: {
-    // width: '10%',
-    textAlign: "center",
-    fontSize: fontSizes.size_1,
-    color: "#636e72",
-    marginBottom: 8,
-  },
   metricsContainer: {
     marginTop: 20,
   },
-  scoreTitle: {
-    fontSize: fontSizes.size_1,
-    color: "#2d3436",
-    fontWeight: "600",
-    marginBottom: 12,
-    alignSelf:'center'
+  scrollContainer: {
+    paddingRight: 20, // Espacio al final del scroll
   },
   barsContainer: {
     flexDirection: "row",
-    // gap:27,
-    justifyContent: "space-between",
-    width: "100%",
-    // marginHorizontal: "auto"
+    gap: 18, // Espacio entre columnas
+    paddingHorizontal: 16, // Padding lateral inicial
+  },
+  barColumn: {
+    alignItems: "center",
+    width: 20,
   },
   barWrapper: {
     width: 10,
     height: 100,
     justifyContent: "flex-end",
     backgroundColor: "#D6DBED",
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
+    borderRadius: 16,
   },
   bar: {
-    // height: '100%',
     width: 10,
     backgroundColor: "#00C7BE",
     borderRadius: 16,
   },
+  gridNumber: {
+    textAlign: "center",
+    fontSize: fontSizes.size_1,
+    color: "#636e72",
+    marginTop: 8,
+    width: "100%",
+  },
+  scoreTitle: {
+    fontSize: fontSizes.size_1,
+    color: "#2d3436",
+    fontWeight: "600",
+    marginTop: 20,
+    textAlign: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  tooltip: {
+    position: 'absolute',
+    backgroundColor: '#2d3436',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    minWidth: 50,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    zIndex: 1,
+  },
+  tooltipText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  tooltipPointer: {
+    position: 'absolute',
+    bottom: -8,
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 8,
+    borderRightWidth: 8,
+    borderBottomWidth: 8,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#2d3436',
+  },
 
+
+  //ESTILOS DE TARJETAS DE PUNTUACION =========================================================================
   scoreGrid: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginVertical: 8,
   },
   scoreColumn: {
-    width: '48%', // Para dejar espacio entre columnas
+    width: "48%",
   },
   scoreItem: {
     marginBottom: 16,
     borderRadius: 16,
     borderBottomWidth: 10,
-    padding: 8
+    padding: 8,
   },
   scoreRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 4,
   },
   scoreLabel: {
-    fontSize: fontSizes.size_2,
-    color: '#000',
+    fontSize: fontSizes.size_1,
+    color: "#000",
+    fontWeight: "bold",
   },
   scoreValue: {
     fontSize: fontSizes.size_2,
-    color: '#000',
-    fontWeight: 'bold',
+    // color: '#000',
+    fontWeight: "bold",
   },
   progressBar: {
     height: 4,
-    backgroundColor: '#EDF2F7',
+    backgroundColor: "#EDF2F7",
     borderRadius: 2,
   },
   progressFill: {
-    height: '100%',
-    backgroundColor: '#00C7BE',
+    height: "100%",
+    backgroundColor: "#00C7BE",
     borderRadius: 2,
   },
 
-
-  //SECCION DE ULTIMO JUEGO JUGADO
+  //SECCION DE ULTIMO JUEGO JUGADO ===============================================================================
   gameContainer: {
     // flex: 1,
     // position: 'relative',
   },
   imageContainer: {
-    height: 100,
-    backgroundColor: '#E0E0E0',
+    height: 150,
+    backgroundColor: "#E0E0E0",
     borderRadius: 12,
     // overflow: 'hidden',
     marginBottom: 16,
+    overflow:"hidden"
   },
   gameImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
+    shadowColor: 'red',
+    shadowRadius: 10
+  },
+  gameLabel:{
+    color:'#fff',
+    position:'absolute',
+    bottom:10,
+    right:10,
+    fontSize:fontSizes.size_2,
+    fontWeight: 'bold'
   },
   floatingButton: {
     position: 'absolute',
-    // width: 'auto',
-    bottom: 30,
+    bottom: 70,
     right: 20,
-    borderWidth: 6,
+    backgroundColor: '#00C7BE',
+    borderWidth: 8,
     borderColor: 'white',
     borderRadius: 16,
     paddingVertical: 12,
     paddingHorizontal: 25,
-    elevation: 15,
-    backgroundColor:'#00C7BE'
+    elevation: 5,
+    shadowColor: 'transparent',
   },
   buttonText: {
     color: 'white',
-    fontSize: fontSizes.size_3, // Usando la variable definida
+    fontSize: fontSizes.size_3,
     fontWeight: 'bold',
   },
 
-
-
-  //ESTILOS DE LA BARRA INFERIOR
+  //ESTILOS DE LA BARRA INFERIOR =========================================================================================
   bottomBar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     height: 60,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    backgroundColor: "white",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     borderTopWidth: 1,
-    borderTopColor: '#ddd',
-    elevation: 8,
+    borderTopColor: "#ddd",
+    // elevation: 8,
   },
   bottomText: {
-    fontSize: 16,
-    color: '#333',
+    fontSize: fontSizes.size_1,
+    color: "#333",
   },
 });
