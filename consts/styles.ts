@@ -226,6 +226,7 @@ export const styles = StyleSheet.create({
   gameContainer: {
     // flex: 1,
     // position: 'relative',
+    height:400
   },
   imageContainer: {
     height: 150,

@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { TouchableHighlight, View, Text, Animated } from "react-native";
 
-function PlayBtn() {
+function PlayBtn({short}:{short:Boolean}) {
   const [isPressed, setIsPressed] = useState(false);
   const scaleValue = new Animated.Value(1);
 
@@ -43,12 +43,13 @@ function PlayBtn() {
           size={40} 
           color={isPressed ? "#FFFFFF" : "#F0F0F0"} 
         />
-        <Text style={[
+        {short && (<Text style={[
           styles.buttonText,
           { color: isPressed ? "#FFFFFF" : "#F8F8F8" }
         ]}>
           Let's play
-        </Text>
+        </Text>)}
+        
       </Animated.View>
     </TouchableHighlight>
   );
